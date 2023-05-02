@@ -64,9 +64,7 @@ export class AddStateComponent {
     this.save();
   }
 
-  onChange(){
-    console.log(this.statesaveform)
-  }
+  
 
   // save() {
   //   console.log(this.state)

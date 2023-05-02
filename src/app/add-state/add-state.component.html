@@ -13,7 +13,7 @@
       <div class="col-sm-4"></div>
       <div class="col-sm-4 p-2" style="background-color: white;">
         <div [hidden]="submitted" style="width: 400px">
-          <form [formGroup]="statesaveform" #state (ngSubmit)="saveState(state)" (change)="onChange()">
+          <form [formGroup]="statesaveform" #state (ngSubmit)="saveState(state)">
 
             <div class="form-group my-2">
               <label for="id">State ID<span style="color: red;"> *</span></label>
