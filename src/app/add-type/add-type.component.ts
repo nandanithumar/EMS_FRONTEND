@@ -44,7 +44,6 @@ typesaveform : FormGroup = new FormGroup({
 
 
 saveType(type: Type) {
-  console.log(type)
   this.type = new Type();
   this.type.id=this.ID?.value;
   this.type.name = this.Name?.value;
@@ -55,7 +54,6 @@ saveType(type: Type) {
   (this.type.description as Description).plain =this.PlainDes?.value;
   let date = new Date();
 
-  // console.log(typeof date);
   this.type.effectiveDate=date.toJSON();
   date.setDate(date.getDate() + 30);
   this.type.expirationDate=date.toJSON();
@@ -63,18 +61,14 @@ saveType(type: Type) {
   this.save();
 }
 
-onChange(){
-  console.log(this.typesaveform)
-}
+
 
 
 
 save() {
-  console.log(this.type);
   this.typeService.createType(this.type, this.RefObjUri?.value).subscribe(
     (data) => {
       this.isSave = true;
-      console.log(data);
     },
     (error) => {
       for (let i = 0; i < error.error.length; i++) {

@@ -33,12 +33,10 @@ export class StateService {
   }
 
   updateState(id: string | undefined, value: State): Observable<Object> {
-    // console.log(Object.values(value[0]), Object.keys(value[0]) +"=======================================");
     return this.http.put(`${this.baseUrl}states`, value);
   }
 
   searchStatesByRefObjectUriAndName(ids: string[] | null, refObjectUri: string | null, stateName: string | null, page: number, size: number): Observable<Page> {
-    console.log()
     const params = new HttpParams()
       .set('ids', ids ? ids.join(',') : '')
       .set('refObjectUri', refObjectUri ? refObjectUri : '')  

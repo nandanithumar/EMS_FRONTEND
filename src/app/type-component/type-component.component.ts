@@ -71,9 +71,7 @@ export class TypeComponentComponent implements OnInit {
   }
 
   onTableDataChange(event: any) {
-    console.log('called');
     this.page = event;
-    console.log(event);
     this.typeService
       .searchTypesByRefObjectUriAndName(
         [],
@@ -91,7 +89,6 @@ export class TypeComponentComponent implements OnInit {
 
   searchValue() {
     let val = (document.getElementById('searchTerm') as HTMLInputElement).value;
-    console.log(' meri value badali gai hain');
     if (val === '') {
       this.typeService
         .searchTypesByRefObjectUriAndName([], '', '', '', 0, 10)
@@ -195,26 +192,20 @@ export class TypeComponentComponent implements OnInit {
       .subscribe((data: Page) => {
         const myData = data.content;
         this.types.push(...(myData as Type[]));
-        console.log(this.searchResults);
       });
     this.typeService
       .searchTypesByRefObjectUriAndName([], '', this.searchTerm, '', 0, 10)
       .subscribe((data: Page) => {
         const myData = data.content;
         this.types.push(...(myData as Type[]));
-        console.log(this.types)
       });
   }
 
   deleteType(type: Type): void {
-    console.log(
-      'DELETE METHOD HAS BEEN CALLED-----------------------------------'
-    );
     if (type.id !== undefined) {
       this.typeService.deleteType(type.id).subscribe(
         (data) => {
-          console.log("Here")
-          console.log(data);
+        
           this.typeService
             .searchTypesByRefObjectUriAndName(
               [],
@@ -225,12 +216,10 @@ export class TypeComponentComponent implements OnInit {
               this.tableSize
             )
             .subscribe((data) => {
-              console.log(data);
               this.types = data.content as Type[];
             });
         },
         (error) => {
-          console.log("Here with error")
           this.typeService
             .searchTypesByRefObjectUriAndName(
               [],
@@ -241,7 +230,6 @@ export class TypeComponentComponent implements OnInit {
               this.tableSize
             )
             .subscribe((data) => {
-              console.log(data);
               this.types = data.content as Type[];
             });
           console.log(error)}
@@ -253,11 +241,9 @@ export class TypeComponentComponent implements OnInit {
   editType(id: string | undefined, type: Type): void {
     this.currentType = type;
     if (id) {
-      console.log(id);
-      console.log(this.typeList);
+      
       this.typeService.updateType(type).subscribe(
         (data) => {
-          console.log(data);
           const index = this.types.findIndex((s) => s.id === id);
           this.types[index] = type;
           this.selectedType = new Type();
@@ -275,7 +261,6 @@ export class TypeComponentComponent implements OnInit {
   });
 
   updateType(oldType: Type) {
-    console.log(oldType);
     this.type.id = this.Id!.value;
     this.type.name = this.Name!.value;
     this.type.stateId = this.stateId!.value;

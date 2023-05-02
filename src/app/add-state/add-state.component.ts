@@ -45,7 +45,6 @@ export class AddStateComponent {
  
 
   saveState(state: State) {
-    console.log(state)
     this.state = new State();
     this.state.id=this.ID?.value;
     this.state.name = this.Name?.value;
@@ -56,7 +55,6 @@ export class AddStateComponent {
     (this.state.description as Description).plain =this.PlainDes?.value;
     let date = new Date();
 
-    // console.log(typeof date);
     this.state.effectiveDate=date.toJSON();
     date.setDate(date.getDate() + 30);
     this.state.expirationDate=date.toJSON();
@@ -66,21 +64,11 @@ export class AddStateComponent {
 
   
 
-  // save() {
-  //   console.log(this.state)
-  //   this.stateService.createState(this.state).subscribe(
-  //     (data) => console.log(data),
-  //     (error) => console.log(error)
-  //   );
-  //   this.state = new State();
-  // }
 
   save() {
-    console.log(this.state);
     this.stateService.createState(this.state).subscribe(
       (data) => {
         this.isSave=true;
-        console.log(data);
       },
       (error) => {
         for (let i = 0; i < error.error.length; i++) {

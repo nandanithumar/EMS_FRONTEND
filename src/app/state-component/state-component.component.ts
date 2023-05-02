@@ -57,9 +57,7 @@ export class StateComponentComponent implements OnInit {
   }
 
   onTableDataChange(event: any) {
-    console.log("called")
     this.page = event;
-    console.log(event)
     this.stateService.searchStatesByRefObjectUriAndName([],'','',this.page-1,this.tableSize).subscribe((data)=>{
       this.states = data.content as State[];
       // this.count = data.numberOfElements as number;
@@ -77,7 +75,6 @@ export class StateComponentComponent implements OnInit {
 
   searchValue() {
     let val = (document.getElementById('searchTerm') as HTMLInputElement).value;
-    console.log(' meri value badali gai hain');
     if (val === '') {
       this.stateService.isSearching.next(false);
       this.stateService.searchStatesByRefObjectUriAndName([],'','',0,10).subscribe((data) => {
@@ -178,7 +175,6 @@ export class StateComponentComponent implements OnInit {
       .subscribe((data: Page) => {
         const myData = data.content;
         this.states.push(...(myData as State[]));
-        console.log(this.searchResults);
       });
     this.stateService
       .searchStatesByRefObjectUriAndName([], this.searchTerm, '', 0, 10)
@@ -195,14 +191,11 @@ export class StateComponentComponent implements OnInit {
   }
 
   deleteState(state: State): void {
-    console.log("DELETE METHOD HAS BEEN CALLED-----------------------------------")
     if (state.id !== undefined) {
       this.stateService.deleteState(state.id).subscribe(
         (data) => {
-          console.log(data);
           this.stateService.searchStatesByRefObjectUriAndName([],'','',this.page,this.tableSize).subscribe(
             (data) => {
-              console.log(data)
               this.states = data.content as State[];
             }
           );
@@ -215,11 +208,8 @@ export class StateComponentComponent implements OnInit {
   editState(id: string | undefined, state: State): void {
     this.currentState = state;
     if (id) {
-      console.log(id)
-      console.log(this.stateList)
       this.stateService.updateState(id, state).subscribe(
         (data) => {
-          console.log(data);
           const index = this.states.findIndex((s) => s.id === id);
           this.states[index] = state;
           this.selectedState = new State();
@@ -237,7 +227,6 @@ export class StateComponentComponent implements OnInit {
   });
 
   updateState(oldState : State, updstate: State) {
-    console.log(oldState)
     this.state.id = this.Id!.value;
     this.state.name = this.Name!.value;
     this.state.isInitialState = this.IsInitialState!.value;

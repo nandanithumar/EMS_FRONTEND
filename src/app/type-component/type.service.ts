@@ -32,11 +32,8 @@ export class Typeservice {
 
   deleteType(id: string): Observable<Type> {
     const data = this.http.delete(`${this.baseUrl}types/${id}`);
-    console.log(data);
     data.subscribe((data) => {
-      console.log(data);
     });
-    console.log('returning back');
     return data;
   }
 
@@ -51,7 +48,6 @@ export class Typeservice {
 
   
   searchTypesByRefObjectUriAndName(ids: string[] | null,stateId:string, refObjectUri: string | null, stateName: string | null, page: number, size: number): Observable<Page> {
-    console.log()
     const params = new HttpParams()
       .set('ids', ids ? ids.join(',') : '')
       .set('stateId',stateId?stateId:'')
