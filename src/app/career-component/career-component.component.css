@@ -1,0 +1,27 @@
+.first{
+    text-align: left;
+   
+}
+
+.pink{
+    color: #902b7f;
+   
+}
+
+h1,h2,h3{
+    font-size: xxx-large;
+}
+
+.card-title{
+    font-size: xx-large;
+}
+
+.card-body img{
+    height: 30vh;
+    width: 30vw;
+}
+
+.container.card-body img{
+    height: 40vh;
+    width: 30vw;
+}

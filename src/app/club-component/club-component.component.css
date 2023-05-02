@@ -1,0 +1,20 @@
+h1{
+    color: #902b7f;
+    font-weight: 500;
+}
+
+.card-title{
+    color: #902b7f;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.card-body{
+    border-radius: 1%;
+   
+}
+
+.card-body img{
+    height: min-content;
+    width:min-content;
+}

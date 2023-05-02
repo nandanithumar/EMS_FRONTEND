@@ -1,0 +1,178 @@
+<div class="container m-2">  
+  <div class="padding px-2">  
+    <div class="auto m-3">
+      <div class="mx-5 ">
+        <p class="p-2" style="color: #943b85">State</p>
+      </div>
+      <div>
+        <nav class="navbar navbar-expand-lg navbar-light mx-5">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link mr-3" routerLink="/master/state" routerLinkActive="active">State</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3" routerLink="/master/type" routerLinkActive="active">Type</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <hr>
+      <div>
+        <div class="row align-items-center m-5">
+          <div class="d-flex justify-content-between">
+            <div class="container d-flex">
+              <div class="mb-0 me-5 ms-4">
+                <label for="nameFilter" class="mb-1" style="color: black">Name:</label><br />
+                <select class="form-select mb-1" aria-label="Select refObjectUri" id="nameFilter"
+                  [(ngModel)]="selectedName">
+                  <option value="">All</option>
+                  <option *ngFor="let n of uniqueNames" [value]="n">{{ n }}</option>
+                </select>
+              </div>
+              <div class="col-auto ms-5">
+                <label for="nameFilter" class="mb-1" style="color: black">RefObjUri:</label><br />
+                <select class="form-select mb-1" aria-label="Select name" id="uriFilter" [(ngModel)]="selectedUri">
+                  <option value="">All</option>
+                  <option *ngFor="let uri of uniqueUris" [value]="uri">
+                    {{ uri }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="row-lg-12 align-right input-group mb-1 mx-3" style="height: 10px; width: 300px;">
+              <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                aria-describedby="basic-addon2" id="searchTerm" (input)="searchValue()">
+            </div>
+          </div>
+          <table class="table table-striped table-hover mx-5 mt-3">
+            <thead class="theader">
+              <tr>
+                <th>
+                  Id
+                  <span class="bi" (click)="sortById(sortAsc ? 'desc' : 'asc'); sortAsc = !sortAsc" [ngClass]="{
+                      'bi-caret-down': sortAsc === true,
+                      'bi-caret-up': sortAsc === false
+                    }"></span>
+                </th>
+                <th>
+                  Is Initial State
+                  <span class="bi" (click)="
+                      sortByIsInitialState(sortAsc ? 'desc' : 'asc');
+                      sortAsc = !sortAsc
+                    " [ngClass]="{
+                      'bi-caret-down': sortAsc === true,
+                      'bi-caret-up': sortAsc === false
+                    }">
+                  </span>
+                </th>
+                <th>
+                  Name
+                  <span class="bi" (click)="
+                      sortByName(sortAsc ? 'desc' : 'asc'); sortAsc = !sortAsc
+                    " [ngClass]="{
+                      'bi-caret-down': sortAsc === true,
+                      'bi-caret-up': sortAsc === false
+                    }">
+                  </span>
+                </th>
+                <th>
+                  Ref Object URI
+                  <span class="bi" (click)="
+                      sortByRefObjUri(sortAsc ? 'desc' : 'asc'); sortAsc = !sortAsc
+                    " [ngClass]="{
+                      'bi-caret-down': sortAsc === true,
+                      'bi-caret-up': sortAsc === false
+                    }">
+                  </span>
+                </th>
+                <th>Effective Data</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let state of filteredStates   | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        ">
+                <td>{{ state.id }}</td>
+                <td>{{ state.isInitialState }}</td>
+                <td>{{ state.name }}</td>
+                <td>{{ state.refObjectUri }}</td>
+                <td>{{ state.effectiveDate }}</td>
+                <td>
+                  <button class='btn btn-primary mx-2 ' (click)="editState(state.id, state)" data-bs-toggle="modal"
+                    data-bs-target="#myModal" type="button">Update
+                  </button>
+                  <button (click)="deleteState(state)" class='btn btn-danger'>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ms-4">
+            <i class="bi bi-plus-circle-fill my-4 " routerLink="/master/addState"></i>
+          </div>
+          <div class="d-flex justify-content-center">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form [formGroup]="StateUpdateForm" #updemp (ngSubmit)="updateState(currentState, updemp)">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center">Update State</h4>
+        </div>
+
+        <div class="modal-body">
+          <div [hidden]="isupdated">
+            <input type="hidden" class="form-control" formControlName="id" [(ngModel)]="currentState.id">
+            <div class="form-group">
+              <label for="name">State Name</label>
+              <input type="text" class="form-control" formControlName="name" [(ngModel)]="currentState.name">
+            </div>
+
+
+            <div class="form-group">
+              <label for="name">State RefObjUri</label>
+              <input type="text" class="form-control" formControlName="refObjectUri"
+                [(ngModel)]="currentState.refObjectUri">
+            </div>
+
+
+            <div class="form-group">
+              <label for="moNumber">State IsInitialState </label>
+              <input type="text" class="form-control" formControlName="isInitialState"
+                [(ngModel)]="currentState.isInitialState" />
+            </div>
+          </div>
+          <div [hidden]="!isupdated">
+            <h4>State Updated!</h4>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="changeisUpdate()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

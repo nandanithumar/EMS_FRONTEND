@@ -1,0 +1,64 @@
+p{
+    text-align: left;
+    font-size: 30px;
+    font-weight:400;
+}
+
+.navbar {
+    font-size: medium;
+    font-weight: 400;  
+    
+} 
+
+.active{
+    background-color: #b4b1b3;
+    border-radius: 10px;
+
+}
+
+.theader{
+    color:white ;
+    background-color:rgb(42, 41, 41);
+ }
+ 
+ .table{
+     width: 94%;
+ }
+ 
+ h2{
+     color:#943b85 ;
+     text-align: center;
+     text-align: center ;
+ }
+ 
+ tbody td{
+     width: auto;
+ }
+ 
+ p{
+     text-align: left;
+     font-size: 30px;
+     font-weight:400;
+ }
+ 
+ .navbar {
+     font-size: medium;
+     font-weight: 400;  
+     
+ } 
+ 
+ .active{
+     background-color: #b4b1b3;
+     border-radius: 10px;
+ 
+ }
+ 
+ i{
+     color: rgb(30, 84, 30);
+     font-size: 25px;
+ }
+ 
+ 
+ .auto{
+     background-color: white;
+ }

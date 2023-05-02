@@ -1,0 +1,11 @@
+ #cal{
+    width: unset !important;
+    height: unset !important;
+    zoom: 60%;
+}
+
+  
+.national-holiday {
+    background-color: red;
+  }
+

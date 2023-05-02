@@ -1,0 +1,27 @@
+table {
+    border-collapse: collapse;
+    width: 90%;
+    border: 3px solid grey;
+  }
+  
+  th, td {
+    text-align: left;
+    font-size: large;
+    padding: 12px;
+    border-right: 1px solid gray;
+    
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr {
+    border-bottom: 1px solid grey;
+  }
+  
+
+  h1{
+    color: #961d81;
+    font-weight: 450;
+  }
