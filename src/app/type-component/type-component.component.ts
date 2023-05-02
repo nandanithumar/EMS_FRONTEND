@@ -213,6 +213,7 @@ export class TypeComponentComponent implements OnInit {
     if (type.id !== undefined) {
       this.typeService.deleteType(type.id).subscribe(
         (data) => {
+          console.log("Here")
           console.log(data);
           this.typeService
             .searchTypesByRefObjectUriAndName(
@@ -228,7 +229,22 @@ export class TypeComponentComponent implements OnInit {
               this.types = data.content as Type[];
             });
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log("Here with error")
+          this.typeService
+            .searchTypesByRefObjectUriAndName(
+              [],
+              '',
+              '',
+              '',
+              this.page,
+              this.tableSize
+            )
+            .subscribe((data) => {
+              console.log(data);
+              this.types = data.content as Type[];
+            });
+          console.log(error)}
       );
       this.onTableDataChange;
     }
@@ -273,7 +289,7 @@ export class TypeComponentComponent implements OnInit {
         this.isupdated = true;
         this.typeService.searchTypesByRefObjectUriAndName([],'','',"",0,5).subscribe((data) => {
           this.types = data.content as Type[];
-          
+
         });
       },
       (error) => console.log(error)
@@ -292,7 +308,7 @@ export class TypeComponentComponent implements OnInit {
   }
 
   get RefObjUri() {
-    return this.TypeUpdateForm.get('refObjectUri'); 
+    return this.TypeUpdateForm.get('refObjectUri');
   }
 
   changeisUpdate() {

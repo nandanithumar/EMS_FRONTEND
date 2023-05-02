@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { data } from 'jquery';
+// import { data } from 'jquery';
 import Page from '../page.model';
 import {Description, State} from '../state.model';
 import { StateService } from './state.service';
@@ -46,14 +46,14 @@ export class StateComponentComponent implements OnInit {
         this.uniqueNames = Array.from(
           new Set(this.states.map((state) => state.name))
         ).filter((name) => name !== undefined) as string[];
-  
+
         // Get unique URIs
         this.uniqueUris = Array.from(
           new Set(this.states.map((state) => state.refObjectUri))
         ).filter((uri) => uri !== undefined) as string[];
       });
     })
-    
+
   }
 
   onTableDataChange(event: any) {
@@ -245,7 +245,7 @@ export class StateComponentComponent implements OnInit {
     this.state.effectiveDate = oldState.effectiveDate;
     this.state.expirationDate = oldState.expirationDate;
     this.state.description=oldState.description;
-    this.state.meta=oldState.meta;    
+    this.state.meta=oldState.meta;
     this.stateService
       .updateState(this.state.id, this.state)
       .subscribe(
