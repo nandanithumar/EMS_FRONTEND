@@ -12,7 +12,7 @@ import { StateService } from './state-component/state.service';
 
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
-  private cache = new Map<string, [HttpResponse<any>, number]>();
+  private cache : Map<string, [HttpResponse<any>, number]> = new Map<string, [HttpResponse<any>, number]>();
   subscription:any;
 
   constructor(private stateService : StateService){
@@ -26,7 +26,9 @@ export class CachingInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.method !== 'GET') {
+      console.log(this.cache)
       console.log(request.url)
+      console.log(request.method)
       // remove the corresponding cache entry for non-GET requests
       // if(this.cache.delete(request.url.slice(0, request.url.lastIndexOf('/')))){
       //   console.log("cach deleted for non get requests=====================================");
