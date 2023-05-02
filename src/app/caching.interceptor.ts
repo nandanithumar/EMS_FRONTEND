@@ -28,13 +28,14 @@ export class CachingInterceptor implements HttpInterceptor {
     if (request.method !== 'GET') {
       console.log(request.url)
       // remove the corresponding cache entry for non-GET requests
-      if(this.cache.delete(request.url.slice(0, request.url.lastIndexOf('/')))){
-        console.log("cach deleted for non get requests");
-      }
+      // if(this.cache.delete(request.url.slice(0, request.url.lastIndexOf('/')))){
+      //   console.log("cach deleted for non get requests=====================================");
+      // }
+      this.cache.clear()
       console.log(this.cache);
       return next.handle(request);
     }
-    
+
     this.stateService.isSearching.pipe(map((data)=> {
       if(data){
         this.result = true;
