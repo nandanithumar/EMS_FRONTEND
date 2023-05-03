@@ -112,17 +112,18 @@
                 <td>{{ state.refObjectUri }}</td>
                 <td>{{ state.effectiveDate }}</td>
                 <td>
-                  <button class='btn btn-primary mx-2 ' (click)="editState(state.id, state)" data-bs-toggle="modal"
-                    data-bs-target="#myModal" type="button">Update
+                  <button class='btn mx-2 ' (click)="editState(state.id, state)" data-bs-toggle="modal"
+                    data-bs-target="#myModal" type="button">
+                    <i class="bi-pencil" style="color:rgb(0, 0, 80);"></i>
                   </button>
-                  <button (click)="deleteState(state)" class='btn btn-danger'>
-                    Delete
+                  <button (click)="deleteState(state)" class='btn'>
+                    <i class="bi-trash-fill" style="color:rgb(175, 56, 56)"></i>
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <div class="ms-4">
+          <div class="d-flex justify-content-end me-5">
             <i class="bi bi-plus-circle-fill my-4 " routerLink="/master/addState"></i>
           </div>
           <div class="d-flex justify-content-center">

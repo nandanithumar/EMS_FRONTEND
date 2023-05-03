@@ -1,91 +1,91 @@
-<div>
-  <div class="row m-2">
-    <div class="col-sm-4">
-      <h1> <i class="bi bi-arrow-left-circle" routerLink="/master/state"></i></h1>
+  <div>
+    <div class="row m-2">
+      <div class="col-sm-4">
+        <h1> <i class="bi bi-arrow-left-circle" routerLink="/master/state"></i></h1>
+      </div>
+      <div class="col-sm-4">
+        <p class="title1"> Add More State !</p>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <p class="title1"> Add More State !</p>
-    </div>
-  </div>
-  <hr>
-  <div class="container">
-    <div class="row my-2">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4 p-2" style="background-color: white;">
-        <div [hidden]="submitted" style="width: 400px">
-          <form [formGroup]="statesaveform" #state (ngSubmit)="saveState(state)">
-
-            <div class="form-group my-2">
-              <label for="id">State ID<span style="color: red;"> *</span></label>
-              <input type="text" class="form-control" formControlName="id" data-toggle="tooltip" data-placement="right"
-                title="Enter State ID" />
-            </div>
-
-            <div class="form-group my-2">
-              <label for="name">State Name<span style="color: red;"> *</span></label>
-              <input type="text" class="form-control" formControlName="name" data-toggle="tooltip"
-                data-placement="right" title="Enter State Name" />
-            </div>
-
-            <div class="form-group my-2">
-              <label for="refObjectUri">State's RefObjectUri <span style="color: red;"> *</span></label>
-              <input type="text" class="form-control" formControlName="refObjectUri" data-toggle="tooltip"
-                data-placement="right" title="Enter RefObjectUri for State" />
-            </div>
-
-            <div class="form-group my-2">
-              <label for="isInitialState">State's IsInitial State</label>
-              <input type="text" class="form-control" formControlName="isInitialState" data-toggle="tooltip"
-                data-placement="right" title="Enter IsInitialstate for State" />
-              <div class="alert alert-danger" *ngIf="IsInitialstate?.touched && IsInitialstate?.invalid"
-                style="margin-top: 5px">
-                <span *ngIf="IsInitialstate?.errors">IsInitialstate is Required</span>
-              </div>
-            </div>
-
-            <div class="form-group my-2">
-              <label for="plainDescription">Plain Description <span style="color: red;"> *</span></label>
-              <input type="text" class="form-control" formControlName="plainDescription" data-toggle="tooltip"
-                data-placement="right" title="Enter plainDescription for State" />
-              <div class="alert alert-danger" *ngIf="PlainDes?.touched && PlainDes?.invalid" style="margin-top: 5px">
-                <span *ngIf="PlainDes?.errors">Plain Description is Required</span>
-              </div>
-            </div>
-
-            <div class="form-group my-2">
-              <label for="formattedDescription">Formatted Description <span style="color: red;"> *</span></label>
-              <input type="text" class="form-control" formControlName="formattedDescription" data-toggle="tooltip"
-                data-placement="right" title="Enter formattedDescription for State" />
-              <div class="alert alert-danger" *ngIf="FormatedDes?.touched && FormatedDes?.invalid"
-                style="margin-top: 5px">
-                <span *ngIf="FormatedDes?.errors">Formated Description is Required</span>
-              </div>
-            </div>
-            <div style="color: brown; size: 1cm;">( Field with * are compulsory )</div>
-            <button type="submit" class="btn btn-success my-2">Submit</button>
-          </form>
-        </div>
-        <div class="row">
-          <div class="col-sm-4" [hidden]="!submitted">
-            <div *ngIf="statesaveform.valid">
-              <h4>States Added SuccessFully!</h4>
-              <button (click)="addEmployeeForm()" class='btn btn-primary'>Add More States</button>
-            </div>
-          </div>
-          <div class="col-sm-4"></div>
-        </div>
-
+    <hr>
+    <div class="container">
+      <div class="row my-2">
         <div class="col-sm-4"></div>
-        <div class="row">
-          <div class="col-sm-8" [hidden]="!submitted">
-            <div *ngIf="statesaveform.invalid">
-              <p>There was an error in the Data Given by you. Please correct the Data and try again.</p>
-              <button (click)="addEmployeeForm()" class='btn btn-primary'>Try Again</button>
-            </div>
+        <div class="col-sm-4 p-2" style="background-color: white;">
+          <div [hidden]="submitted" style="width: 400px">
+            <form [formGroup]="statesaveform" #state (ngSubmit)="saveState(state)">
+
+              <div class="form-group my-2">
+                <label for="id">State ID<span style="color: red;"> *</span></label>
+                <input type="text" class="form-control" formControlName="id" data-toggle="tooltip" data-placement="right"
+                  title="Enter State ID" />
+              </div>
+
+              <div class="form-group my-2">
+                <label for="name">State Name<span style="color: red;"> *</span></label>
+                <input type="text" class="form-control" formControlName="name" data-toggle="tooltip"
+                  data-placement="right" title="Enter State Name" />
+              </div>
+
+              <div class="form-group my-2">
+                <label for="refObjectUri">State's RefObjectUri <span style="color: red;"> *</span></label>
+                <input type="text" class="form-control" formControlName="refObjectUri" data-toggle="tooltip"
+                  data-placement="right" title="Enter RefObjectUri for State" />
+              </div>
+
+              <div class="form-group my-2">
+                <label for="isInitialState">State's IsInitial State</label>
+                <input type="text" class="form-control" formControlName="isInitialState" data-toggle="tooltip"
+                  data-placement="right" title="Enter IsInitialstate for State" />
+                <div class="alert alert-danger" *ngIf="IsInitialstate?.touched && IsInitialstate?.invalid"
+                  style="margin-top: 5px">
+                  <span *ngIf="IsInitialstate?.errors">IsInitialstate is Required</span>
+                </div>
+              </div>
+
+              <div class="form-group my-2">
+                <label for="plainDescription">Plain Description <span style="color: red;"> *</span></label>
+                <input type="text" class="form-control" formControlName="plainDescription" data-toggle="tooltip"
+                  data-placement="right" title="Enter plainDescription for State" />
+                <div class="alert alert-danger" *ngIf="PlainDes?.touched && PlainDes?.invalid" style="margin-top: 5px">
+                  <span *ngIf="PlainDes?.errors">Plain Description is Required</span>
+                </div>
+              </div>
+
+              <div class="form-group my-2">
+                <label for="formattedDescription">Formatted Description <span style="color: red;"> *</span></label>
+                <input type="text" class="form-control" formControlName="formattedDescription" data-toggle="tooltip"
+                  data-placement="right" title="Enter formattedDescription for State" />
+                <div class="alert alert-danger" *ngIf="FormatedDes?.touched && FormatedDes?.invalid"
+                  style="margin-top: 5px">
+                  <span *ngIf="FormatedDes?.errors">Formated Description is Required</span>
+                </div>
+              </div>
+              <div style="color: brown; size: 1cm;">( Field with * are compulsory )</div>
+              <button type="submit" class="btn btn-success my-2">Submit</button>
+            </form>
           </div>
+          <div class="row">
+            <div class="col-sm-4" [hidden]="!submitted">
+              <div *ngIf="statesaveform.valid">
+                <h4>States Added SuccessFully!</h4>
+                <button (click)="addEmployeeForm()" class='btn btn-primary'>Add More States</button>
+              </div>
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+
           <div class="col-sm-4"></div>
+          <div class="row">
+            <div class="col-sm-8" [hidden]="!submitted">
+              <div *ngIf="statesaveform.invalid">
+                <p>There was an error in the Data Given by you. Please correct the Data and try again.</p>
+                <button (click)="addEmployeeForm()" class='btn btn-primary'>Try Again</button>
+              </div>
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
